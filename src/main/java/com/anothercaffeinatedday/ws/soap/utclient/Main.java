@@ -8,11 +8,14 @@ import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
+import org.apache.wss4j.dom.WSConstants;
+import org.apache.wss4j.dom.handler.WSHandlerConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
@@ -27,7 +30,11 @@ public class Main {
             Client client = ClientProxy.getClient(paymentProcessorImplPort);
             Endpoint clientEndpoint = client.getEndpoint();
 
-            Map<String, Object> properties = null;
+            Map<String, Object> properties = new HashMap<>();
+            properties.put(WSHandlerConstants.ACTION, WSHandlerConstants.USERNAME_TOKEN);
+            properties.put(WSHandlerConstants.USER, "tstone");
+            properties.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
+
             WSS4JOutInterceptor outInterceptor = new WSS4JOutInterceptor(properties);
             clientEndpoint.getOutInterceptors().add(outInterceptor);
 
