@@ -11,11 +11,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Main {
+
     public static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public static final String WSDL_LOCATION = "http://localhost:8080/javafirstws/services/paymentProcessor?wsdl";
+
     public static void main(String[] args) {
         try {
-            PaymentProcessorImplService service = new PaymentProcessorImplService( new URL(WSDL_LOCATION));
+            PaymentProcessorImplService service = new PaymentProcessorImplService(new URL(WSDL_LOCATION));
             PaymentProcessor paymentProcessorImplPort = service.getPaymentProcessorImplPort();
             PaymentProcessorResponse response = paymentProcessorImplPort.processPayment(new PaymentProcessorRequest());
             LOGGER.debug(Boolean.toString(response.isResult()));
