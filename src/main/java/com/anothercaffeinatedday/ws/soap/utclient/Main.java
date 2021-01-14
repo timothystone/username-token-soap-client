@@ -34,6 +34,7 @@ public class Main {
             properties.put(WSHandlerConstants.ACTION, WSHandlerConstants.USERNAME_TOKEN);
             properties.put(WSHandlerConstants.USER, "tstone");
             properties.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
+            properties.put(WSHandlerConstants.PW_CALLBACK_CLASS, UTPasswordCallback.class.getName());
 
             WSS4JOutInterceptor outInterceptor = new WSS4JOutInterceptor(properties);
             clientEndpoint.getOutInterceptors().add(outInterceptor);
