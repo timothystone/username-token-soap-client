@@ -8,7 +8,6 @@ import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 /**
  * The User Token Password Callback for the SOAP Client.
- *
  */
 public class UtPasswordCallback implements CallbackHandler {
   @Override
